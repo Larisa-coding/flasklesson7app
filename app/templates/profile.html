@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="display-4 text-center mb-4">Редактирование профиля</h1>
+    <form method="POST" class="bg-light p-4 rounded shadow">
+        <div class="mb-3">
+            <label for="name" class="form-label">Имя</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Почта</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="new_password" class="form-label">Новый пароль (оставьте пустым, если не хотите менять)</label>
+            <input type="password" class="form-control" id="new_password" name="new_password">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    </form>
+{% endblock %}
