@@ -6,9 +6,15 @@ app = Flask(__name__)
 # Функция для получения случайной цитаты с API
 def get_random_quote():
     try:
-        response = requests.get("https://api.quotable.io/random")
+        response = requests.get("https://zenquotes.io/api/random")
+        print(f"Статус код: {response.status_code}")  # Отладка
+        print(f"Ответ API: {response.text}")  # Отладка
         if response.status_code == 200:
-            return response.json()  # Возвращаем цитату в формате JSON
+            quote_data = response.json()[0]  # Ответ возвращается в виде списка
+            return {
+                "content": quote_data["q"],  # Текст цитаты
+                "author": quote_data["a"]    # Автор
+            }
         else:
             return None  # Если статус код не 200
     except requests.exceptions.RequestException as e:
